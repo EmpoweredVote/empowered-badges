@@ -17,7 +17,7 @@ function MainApp() {
 
 function App() {
   return (
-    <BrowserRouter basename="/empowered-badges/dist">
+    <BrowserRouter basename="/">
       <Routes>
         <Route path="/" element={<MainApp />} />
         <Route path="/housing-homelessness" element={<HousingModule />} />
