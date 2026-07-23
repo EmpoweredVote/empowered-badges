@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@empoweredvote/ev-ui": "^0.2.0",
+    "@empoweredvote/ev-ui": "^0.10.0",
+    "@floating-ui/react": "^0.27.0",
+    "@react-spring/web": "^10.0.1",
     "@tailwindcss/postcss": "^4.1.18",
     "autoprefixer": "^10.4.22",
     "framer-motion": "^12.23.26",
