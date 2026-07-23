@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { SiteHeader } from '@empoweredvote/ev-ui';
+import { SiteHeader, SiteFooter } from '@empoweredvote/ev-ui';
 import { BadgeHub } from './components/BadgeHub';
 import { HousingModule } from './components/HousingModule';
 import { HomelessSystemSimulation } from './components/HomelessSystemSimulation';
@@ -11,6 +11,7 @@ function MainApp() {
       <main className="container mx-auto px-4 py-8 max-w-6xl">
         <BadgeHub />
       </main>
+      <SiteFooter />
     </div>
   );
 }
