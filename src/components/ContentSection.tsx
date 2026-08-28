@@ -92,7 +92,7 @@ function renderContentBlock(block: ContentBlock, index: number) {
         </div>
       );
 
-    case 'callout':
+    case 'callout': {
       const variants = {
         info: 'bg-blue-50 border-blue-200 text-blue-800',
         warning: 'bg-amber-50 border-amber-200 text-amber-800',
@@ -103,6 +103,7 @@ function renderContentBlock(block: ContentBlock, index: number) {
           <p className="text-sm leading-relaxed">{block.content}</p>
         </div>
       );
+    }
 
     default:
       return null;

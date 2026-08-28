@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Home,
@@ -121,31 +121,35 @@ interface AnimatedBead {
 // BeadFlow component - shows animated beads flowing through the system
 function BeadFlowOverlay({ isActive }: { isActive: boolean }) {
   const [beads, setBeads] = useState<AnimatedBead[]>([]);
-  const [beadCounter, setBeadCounter] = useState(0);
+  // Bead ids only need to be unique, not rendered. A ref keeps the counter out
+  // of the effect deps below; as state it re-ran the effect on every spawn.
+  const beadCounter = useRef(0);
 
   // Spawn beads periodically when active
   useEffect(() => {
-    if (!isActive) {
-      setBeads([]);
-      return;
-    }
+    if (!isActive) return;
 
     const spawnBead = () => {
       const newBead: AnimatedBead = {
-        id: `bead-${beadCounter}`,
+        id: `bead-${beadCounter.current}`,
         type: Math.random() > 0.3 ? 'clear' : 'red',
         stage: 'intake',
       };
+      beadCounter.current += 1;
       setBeads(prev => [...prev.slice(-12), newBead]); // Keep max 12 beads
-      setBeadCounter(prev => prev + 1);
     };
 
     // Spawn initial beads
     spawnBead();
     const interval = setInterval(spawnBead, 1200);
 
-    return () => clearInterval(interval);
-  }, [isActive, beadCounter]);
+    // Clearing on teardown resets the overlay when it goes inactive, without
+    // a synchronous setState in the effect body.
+    return () => {
+      clearInterval(interval);
+      setBeads([]);
+    };
+  }, [isActive]);
 
   // Progress beads through stages
   useEffect(() => {

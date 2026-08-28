@@ -1,5 +1,5 @@
 declare module '@empoweredvote/ev-ui' {
-  import { CSSProperties, ReactNode } from 'react';
+  import { CSSProperties } from 'react';
 
   export interface NavDropdownItem {
     label: string;
