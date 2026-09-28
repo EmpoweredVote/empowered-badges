@@ -16,7 +16,7 @@
     "@tailwindcss/postcss": "^4.3.3",
     "autoprefixer": "^10.6.1",
     "framer-motion": "^13.4.0",
-    "lucide-react": "^1.47.0",
+    "lucide-react": "^1.48.0",
     "postcss": "^8.5.28",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
